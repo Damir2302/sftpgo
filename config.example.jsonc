@@ -1,0 +1,31 @@
+{
+  "sites": [
+    {
+      "name": "site-1",
+      "remote_path": "/site-1",
+      "endpoint": "sftp.example.com:22",
+      "sftp_user": "remote_user",
+      "sftp_pass": "remote_password",
+      "sftp_path": "/public_html"
+    },
+    {
+      "name": "site-2",
+      "remote_path": "/site-2",
+      "endpoint": "192.168.1.10:22",
+      "sftp_user": "another_user",
+      "sftp_pass": "another_password",
+      "sftp_path": "/"
+    }
+  ],
+  
+  "users": [
+      {
+      "username": "client1",
+      "password": "pass",
+      "folders": [
+        { "name": "site-1", "virtual_path": "/site-1" },
+        { "name": "site-2", "virtual_path": "/site-2" }
+      ]
+    }
+  ]
+}

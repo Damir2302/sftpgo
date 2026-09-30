@@ -1,0 +1,20 @@
+{
+  "name": "sftpgo-mass-provisioning",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mass create/update SFTPGo folders and users via REST API",
+  "main": "sftpgo.js",
+  "scripts": {
+    "check": "node sftpgo.js check",
+    "domains": "node sftpgo.js domains",
+    "users": "node sftpgo.js users"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "jsonc-parser": "^3.3.1",
+    "ssh2": "^1.15.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
