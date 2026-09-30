@@ -17,7 +17,7 @@ Node.js-скрипт для массового создания и обновл�
 ```text
 .
 ├── sftpgo.js
-├── config.json
+├── config.example.jsonc
 ├── .env.example
 ├── .gitignore
 ├── package.json
@@ -29,7 +29,8 @@ Node.js-скрипт для массового создания и обновл�
 | Файл | Описание |
 |---|---|
 | `sftpgo.js` | Основной скрипт |
-| `config.json` | Список SFTP-хостингов и пользователей |
+| `config.example.jsonc` | Пример списка хостингов и пользователей |
+| `config.jsonc` | Список SFTP-хостингов и пользователей, не должен попадать в Git |
 | `.env.example` | Пример переменных окружения |
 | `.env` | Локальный файл с реальными доступами, не должен попадать в Git |
 | `.gitignore` | Исключает `.env` и `node_modules` |
@@ -74,7 +75,7 @@ SFTPGO_URL=https://sftpgo.example.com
 SFTPGO_USERNAME=admin
 SFTPGO_PASSWORD=admin_password
 
-CONFIG_PATH=./config.json
+CONFIG_PATH=./config.jsonc
 SFTP_CHECK_TIMEOUT_MS=8000
 ```
 
@@ -85,14 +86,14 @@ SFTP_CHECK_TIMEOUT_MS=8000
 | `SFTPGO_URL` | Да | URL SFTPGo без завершающего `/` |
 | `SFTPGO_USERNAME` | Да | Администратор SFTPGo |
 | `SFTPGO_PASSWORD` | Да | Пароль администратора SFTPGo |
-| `CONFIG_PATH` | Нет | Путь к JSON-конфигу. По умолчанию `./config.json` |
+| `CONFIG_PATH` | Нет | Путь к JSON-конфигу. По умолчанию `./config.jsonc` |
 | `SFTP_CHECK_TIMEOUT_MS` | Нет | Таймаут проверки SFTP-подключения. По умолчанию `8000` |
 
 ---
 
-## Настройка `config.json`
+## Настройка `config.jsonc`
 
-Файл `config.json` содержит два массива:
+Файл `config.jsonc` содержит два массива:
 
 ```json
 {
@@ -106,7 +107,7 @@ SFTP_CHECK_TIMEOUT_MS=8000
 
 ---
 
-## Пример `config.json`
+## Пример `config.jsonc`
 
 ```json
 {
@@ -244,7 +245,7 @@ npm run check
 
 Что делает команда:
 
-1. Читает массив `sites` из `config.json`.
+1. Читает массив `sites` из `config.jsonc`.
 2. Подключается к каждому `endpoint` по SFTP.
 3. Проверяет логин и пароль.
 4. Выводит список успешных и неуспешных подключений.
@@ -260,7 +261,7 @@ npm run domains
 Что делает команда:
 
 1. Получает access token через API SFTPGo.
-2. Читает массив `sites` из `config.json`.
+2. Читает массив `sites` из `config.jsonc`.
 3. Проверяет, существует ли папка в SFTPGo.
 4. Если папка существует — обновляет её через `PUT`.
 5. Если папки нет — создаёт её через `POST`.
@@ -276,7 +277,7 @@ npm run users
 Что делает команда:
 
 1. Получает access token через API SFTPGo.
-2. Читает массив `users` из `config.json`.
+2. Читает массив `users` из `config.jsonc`.
 3. Проверяет, существует ли пользователь в SFTPGo.
 4. Если пользователь существует — обновляет его через `PUT`.
 5. Если пользователя нет — создаёт его через `POST`.
@@ -335,12 +336,12 @@ SFTPGO_PASSWORD=
 
 ### `Файл конфигурации не найден`
 
-Причина: файл `config.json` отсутствует или указан неправильный `CONFIG_PATH`.
+Причина: файл `config.jsonc` отсутствует или указан неправильный `CONFIG_PATH`.
 
 Проверьте путь:
 
 ```env
-CONFIG_PATH=./config.json
+CONFIG_PATH=./config.jsonc
 ```
 
 ---
